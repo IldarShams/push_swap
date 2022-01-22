@@ -1,5 +1,6 @@
 NAME = push_swap
-SRCS = push_swap.c utils.c utils2.c utils3.c utils4.c utils5.c
+SRCS = push_swap.c utils.c utils2.c utils3.c utils4.c utils5.c \
+		selection_sort.c quick_sort.c
 LIB_PATH = ./Libft
 HEADER = push_swap.h
 OBJ =   $(SRCS:%.c=%.o)

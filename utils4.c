@@ -6,14 +6,14 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:08:45 by smaegan           #+#    #+#             */
-/*   Updated: 2022/01/21 14:09:03 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/01/22 17:32:05 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rrr(void)
+void	rrr(t_stack *a, t_stack *b)
 {
-	rra();
-	rrb();
+	rra(a);
+	rrb(b);
 }

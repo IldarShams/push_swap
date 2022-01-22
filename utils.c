@@ -6,70 +6,70 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 17:02:42 by smaegan           #+#    #+#             */
-/*   Updated: 2022/01/20 17:58:48 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/01/22 17:28:40 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(void)
+void	sa(t_stack *a)
 {
 	t_node	*f;
 	t_node	*sec;
 
-	if (a.top == NULL)
+	if (a->top == NULL)
 		return ;
-	if (a.top->next == NULL)
+	if (a->top->next == NULL)
 		return ;
-	f = a.top;
+	f = a->top;
 	sec = f->next;
 	f->next = sec->next;
 	sec->next = f;
-	a.top = sec;
+	a->top = sec;
 }
 
-void	sb(void)
+void	sb(t_stack *b)
 {
 	t_node	*f;
 	t_node	*sec;
 
-	if (b.top == NULL)
+	if (b->top == NULL)
 		return ;
-	if (b.top->next == NULL)
+	if (b->top->next == NULL)
 		return ;
-	f = b.top;
+	f = b->top;
 	sec = f->next;
 	f->next = sec->next;
 	sec->next = f;
-	b.top = sec;
+	b->top = sec;
 }
 
-void	ss(void)
+void	ss(t_stack *a, t_stack *b)
 {
-	sa();
-	sb();
+	sa(a);
+	sb(b);
 }
 
-void	pa(void)
-{
-	t_node	*temp;
-
-	if (b.top == NULL)
-		return ;
-	temp = b.top;
-	b.top = b.top->next;
-	temp->next = a.top;
-	a.top = temp;
-}
-
-void	pb(void)
+void	pa(t_stack *a, t_stack *b)
 {
 	t_node	*temp;
 
-	if (a.top == NULL)
+	if (b->top == NULL)
 		return ;
-	temp = a.top;
-	a.top = a.top->next;
-	temp->next = b.top;
-	b.top = temp;
+	temp = b->top;
+	b->top = b->top->next;
+	temp->next = a->top;
+	a->top = temp;
+}
+
+void	pb(t_stack *a, t_stack *b)
+{
+	t_node	*temp;
+
+	if (a->top == NULL)
+		return ;
+	temp = a->top;
+	a->top = a->top->next;
+	temp->next = b->top;
+	b->top = temp;
 }
