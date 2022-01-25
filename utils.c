@@ -6,7 +6,7 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 17:02:42 by smaegan           #+#    #+#             */
-/*   Updated: 2022/01/22 17:28:40 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/01/25 17:06:17 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	sa(t_stack *a)
 	f->next = sec->next;
 	sec->next = f;
 	a->top = sec;
+	printf("sa\n");
 }
 
 void	sb(t_stack *b)
@@ -60,6 +61,7 @@ void	pa(t_stack *a, t_stack *b)
 	b->top = b->top->next;
 	temp->next = a->top;
 	a->top = temp;
+	printf("pa\n");
 }
 
 void	pb(t_stack *a, t_stack *b)
@@ -72,4 +74,5 @@ void	pb(t_stack *a, t_stack *b)
 	a->top = a->top->next;
 	temp->next = b->top;
 	b->top = temp;
+	printf("pb\n");
 }

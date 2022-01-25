@@ -6,7 +6,7 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 17:57:12 by smaegan           #+#    #+#             */
-/*   Updated: 2022/01/22 17:22:55 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/01/25 18:44:03 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int	show(int d, t_stack *s)
 	while (temp != NULL)
 	{
 		ft_putnbr_fd(temp->content, d);
+		write(d, "	", 1);
+		ft_putnbr_fd(temp->index, d);
 		temp = temp->next;
 		write(d, "\n", 1);
 		x++;

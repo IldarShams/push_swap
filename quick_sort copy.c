@@ -1,47 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quick_sort.c                                       :+:      :+:    :+:   */
+/*   quick_sort copy.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 15:44:00 by smaegan           #+#    #+#             */
-/*   Updated: 2022/01/25 18:38:49 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/01/25 15:14:45 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	find_pivot_n(t_stack *s, int n)
-{
-	int		max_index;
-	t_node	*temp;
-	int		i;
-
-	if (n < 2)
-		return (0);
-	if (count(s) < n)
-		n = count(s);
-	i = 1;
-	temp = s->top->next;
-	max_index = s->top->index;
-	while (i++ < n)
-	{
-		if (max_index < temp->index)
-			max_index = temp->index;
-		temp = temp->next;
-	}
-	printf("		max:%d\n", max_index);
-	temp = s->top;
-	i = 0;
-	while (i++ < n)
-	{
-		if (max_index / 2 == temp->index)
-			return (temp->content);
-		temp = temp->next;
-	}
-	return (0);
-}
 
 int	a_sorted_n(t_stack *s, int n)
 {
@@ -83,6 +52,10 @@ int	b_sorted_n(t_stack *s, int n)
 		return (1);
 	else
 		return (0);
+}
+
+void	find_pivot(t_stack *s, int n)
+{
 }
 
 int	quick_sort_a(t_stack *a, t_stack *b, int n)
@@ -174,36 +147,26 @@ int	quick_sort_b(t_stack *a, t_stack *b, int n)
 	return (steps);
 }
 
-// int	quick_sort(t_stack *a, t_stack *b)
-// {
-// 	int		steps;
-// 	int		pivot;
+int	quick_sort(t_stack *a, t_stack *b)
+{
+	int		steps;
+	int		pivot;
 
-// 	if (sorted(a))
-// 		return (0);
-// 	pivot = a->top->content;
-// 	ra(a);
-// 	steps = 1;
-// 	while (a->top->content != pivot)
-// 	{
-// 		if (pivot > a->top->content)
-// 			pb(a, b);
-// 		else
-// 			ra(a);
-// 		steps++;
-// 	}
-// 	steps += quick_sort_b(a, b, count(b));
-// 	steps += quick_sort_a(a, b, count(a));
-// 	printf("a_count: %d, b_count: %d", count(a), count(b));
-// 	return (steps);
-// }
-
-// int	quick_sort(t_stack *a, t_stack *b)
-// {
-// 	int	steps;
-
-// 	if (sorted(a))
-// 		return (0);
-// 	steps = 0;
-// 	quick_sort_a(a, b, count(a));
-// }
+	if (sorted(a))
+		return (0);
+	pivot = a->top->content;
+	ra(a);
+	steps = 1;
+	while (a->top->content != pivot)
+	{
+		if (pivot > a->top->content)
+			pb(a, b);
+		else
+			ra(a);
+		steps++;
+	}
+	steps += quick_sort_b(a, b, count(b));
+	steps += quick_sort_a(a, b, count(a));
+	printf("a_count: %d, b_count: %d", count(a), count(b));
+	return (steps);
+}

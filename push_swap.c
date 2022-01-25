@@ -6,7 +6,7 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 15:48:40 by smaegan           #+#    #+#             */
-/*   Updated: 2022/01/22 19:37:34 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/01/25 18:28:19 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,14 @@ int	main(int argc, char **argv)
 	printf("not sorted a:\n");
 	show(1, a);
 	printf("----------\n\n");
-	printf("	%d\n", quick_sort(a, b));
-	printf("a:\n");
-	show(1, a);
-	printf("----------\n\n");
-	printf("b:\n");
-	show(1, b);
-	printf("----------\n\n");
+	printf("	%d\n", find_pivot_n(a, 2000000));
+	// printf("	%d\n", quick_sort(a, b));
+	// printf("a:\n");
+	// show(1, a);
+	// printf("----------\n\n");
+	// printf("b:\n");
+	// show(1, b);
+	// printf("----------\n\n");
 	// printf("|||||||||||||||||||||||\n\n");
 	// printf("	%d\n", quick_sort_b(a, b, 8));
 	// printf("a:\n");
@@ -55,9 +56,9 @@ int	main(int argc, char **argv)
 	// printf("	%d\n", reverse_find_elem(&a, 100));
 	// printf("	%d\n", reverse_find_elem(&a, 20));
 	// printf("		steps:%d\n", selection_sort());
-	// printf("sorted a:\n");
-	// show(1, &a);
-	// printf("----------\n\n");
+	printf("sorted a:\n");
+	show(1, a);
+	printf("----------\n\n");
 	free_stack(a);
 	free_stack(b);
 	free(a);

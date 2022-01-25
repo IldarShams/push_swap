@@ -6,7 +6,7 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 17:03:20 by smaegan           #+#    #+#             */
-/*   Updated: 2022/01/22 19:32:54 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/01/25 18:25:10 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 typedef struct s_node
 {
+	int				index;
 	int				content;
 	struct s_node	*next;
 }	t_node;
@@ -54,5 +55,8 @@ int		b_sorted_n(t_stack *s, int n);
 int		quick_sort(t_stack *a, t_stack *b);
 int		quick_sort_b(t_stack *a, t_stack *b, int n);
 int		quick_sort_a(t_stack *a, t_stack *b, int n);
+int		find_min_n(t_stack *s, int n);
+int		small_stack_sort_a(t_stack *a, t_stack *b, int n);
+int		find_pivot_n(t_stack *s, int n);
 
 #endif
