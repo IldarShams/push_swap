@@ -1,39 +1,39 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   small_stack_sort.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/25 14:57:59 by smaegan           #+#    #+#             */
-/*   Updated: 2022/01/25 18:13:46 by smaegan          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+// /* ************************************************************************** */
+// /*                                                                            */
+// /*                                                        :::      ::::::::   */
+// /*   small_stack_sort.c                                 :+:      :+:    :+:   */
+// /*                                                    +:+ +:+         +:+     */
+// /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
+// /*                                                +#+#+#+#+#+   +#+           */
+// /*   Created: 2022/01/25 14:57:59 by smaegan           #+#    #+#             */
+// /*   Updated: 2022/01/26 20:01:40 by smaegan          ###   ########.fr       */
+// /*                                                                            */
+// /* ************************************************************************** */
 
-#include "push_swap.h"
+// #include "push_swap.h"
 
-int	find_min_n(t_stack *s, int n)
-{
-	int		min;
-	t_node	*tmp;
+// int	find_min_n(t_stack *s, int n)
+// {
+// 	int		min;
+// 	t_node	*tmp;
 
-	if (count(s) < n)
-		n = count(s);
-	if (s == NULL || n == 0)
-		return (0);
-	if (n == 1)
-		return (s->top->content);
-	min = s->top->content;
-	tmp = s->top->next;
-	while (n > 1)
-	{
-		if (tmp->content < min)
-			min = tmp->content;
-		n--;
-		tmp = tmp->next;
-	}
-	return (min);
-}
+// 	if (count(s) < n)
+// 		n = count(s);
+// 	if (s == NULL || n == 0)
+// 		return (0);
+// 	if (n == 1)
+// 		return (s->top->content);
+// 	min = s->top->content;
+// 	tmp = s->top->next;
+// 	while (n > 1)
+// 	{
+// 		if (tmp->content < min)
+// 			min = tmp->content;
+// 		n--;
+// 		tmp = tmp->next;
+// 	}
+// 	return (min);
+// }
 
 // int	small_stack_sort_a(t_stack *a, t_stack *b, int n)
 // {

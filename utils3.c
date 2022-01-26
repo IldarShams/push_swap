@@ -6,7 +6,7 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 17:57:12 by smaegan           #+#    #+#             */
-/*   Updated: 2022/01/25 18:44:03 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/01/26 16:16:20 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	push(t_stack *s, int elem)
 	t_node	*new_node;
 
 	new_node = malloc(sizeof(t_node));
+	new_node->index = -1;
 	new_node->content = elem;
 	new_node->next = s->top;
 	s->top = new_node;

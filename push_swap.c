@@ -6,19 +6,24 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 15:48:40 by smaegan           #+#    #+#             */
-/*   Updated: 2022/01/25 18:28:19 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/01/26 20:02:45 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 int	main(int argc, char **argv)
 {
 	int		x;
 	t_stack	*a;
 	t_stack	*b;
+	int		fd;
 
+	g = 0;
+	fd = open("test.txt", O_RDONLY);
 	a = init_stack();
 	b = init_stack();
 	x = argc - 1;
@@ -27,40 +32,15 @@ int	main(int argc, char **argv)
 		push(a, ft_atoi(argv[x]));
 		x--;
 	}
-	printf("not sorted a:\n");
-	show(1, a);
-	printf("----------\n\n");
-	printf("	%d\n", find_pivot_n(a, 2000000));
-	// printf("	%d\n", quick_sort(a, b));
-	// printf("a:\n");
-	// show(1, a);
-	// printf("----------\n\n");
-	// printf("b:\n");
-	// show(1, b);
-	// printf("----------\n\n");
-	// printf("|||||||||||||||||||||||\n\n");
-	// printf("	%d\n", quick_sort_b(a, b, 8));
-	// printf("a:\n");
-	// show(1, a);
-	// printf("----------\n\n");
-	// printf("b:\n");
-	// show(1, b);
-	// printf("----------\n\n");
-	// printf("	count:%d\n", count(&a));
-	// printf("	%d\n", find_min(&a));
-	// printf("	%d\n", direct_find_elem(&a, 1));
-	// printf("	%d\n", direct_find_elem(&a, -1));
-	// printf("	%d\n", direct_find_elem(&a, -2));
-	// printf("\n");
-	// printf("	%d\n", reverse_find_elem(&a, 1));
-	// printf("	%d\n", reverse_find_elem(&a, 100));
-	// printf("	%d\n", reverse_find_elem(&a, 20));
-	// printf("		steps:%d\n", selection_sort());
+	put_index(a);
+	int a1 = small_stack_sort_a(a, b, count(a));
 	printf("sorted a:\n");
 	show(1, a);
 	printf("----------\n\n");
+	printf("	%d/%d\n", g, a1);
 	free_stack(a);
 	free_stack(b);
 	free(a);
 	free(b);
+	close(fd);
 }

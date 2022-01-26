@@ -6,7 +6,7 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:08:45 by smaegan           #+#    #+#             */
-/*   Updated: 2022/01/25 18:48:13 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/01/26 19:51:09 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,32 @@ void	rrr(t_stack *a, t_stack *b)
 {
 	rra(a);
 	rrb(b);
+	write(1, "rrr\n", 4);
 }
 
-void put_index(t_stack *s)
+void	put_index(t_stack *s)
 {
-	t_node	*prev_min;
 	t_node	*min;
 	t_node	*temp;
+	int		i;
 
-	prev_min = NULL;
-	min = s->top;
-	temp = s->top->next;
-	while (temp != NULL)
+	i = 0;
+	while (i <= count(s))
 	{
-		if (temp->content < min->content)
+		min = NULL;
+		temp = s->top;
+		while (temp != NULL && temp->index != -1)
+			temp = temp->next;
+		if (temp != NULL)
+			min = temp;
+		while (temp != NULL)
 		{
-			
+			if (temp->content < min->content && temp->index == -1)
+				min = temp;
+			temp = temp->next;
 		}
+		if (min != NULL)
+			min->index = i;
+		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 17:12:10 by smaegan           #+#    #+#             */
-/*   Updated: 2022/01/22 17:31:40 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/01/26 19:51:00 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	ra(t_stack *a)
 {
 	t_node	*temp;
 
+	write(1, "ra\n", 3);
 	if (a->top == NULL)
 		return ;
 	if (a->top->next == NULL)
@@ -26,13 +27,13 @@ void	ra(t_stack *a)
 	temp->next = a->top;
 	a->top = a->top->next;
 	temp->next->next = NULL;
-	return ;
 }
 
 void	rb(t_stack *b)
 {
 	t_node	*temp;
 
+	write(1, "rb\n", 3);
 	if (b->top == NULL)
 		return ;
 	if (b->top->next == NULL)
@@ -43,13 +44,13 @@ void	rb(t_stack *b)
 	temp->next = b->top;
 	b->top = b->top->next;
 	temp->next->next = NULL;
-	return ;
 }
 
 void	rr(t_stack *a, t_stack *b)
 {
 	ra(a);
 	rb(b);
+	write(1, "rr\n", 3);
 }
 
 void	rra(t_stack *a)
@@ -71,6 +72,7 @@ void	rra(t_stack *a)
 	temp->next = a->top;
 	prev->next = NULL;
 	a->top = temp;
+	write(1, "rra\n", 4);
 }
 
 void	rrb(t_stack *b)
@@ -78,9 +80,10 @@ void	rrb(t_stack *b)
 	t_node	*prev;
 	t_node	*temp;
 
-	if (b->top != NULL)
+	write(1, "rrb\n", 4);
+	if (b->top == NULL)
 		return ;
-	if (b->top->next != NULL)
+	if (b->top->next == NULL)
 		return ;
 	prev = NULL;
 	temp = b->top;

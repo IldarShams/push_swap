@@ -6,7 +6,7 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:54:53 by smaegan           #+#    #+#             */
-/*   Updated: 2022/01/21 16:44:19 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/01/26 17:39:53 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,28 @@ int	count(t_stack *s)
 int	direct_find_elem(t_stack *s, int elem)
 {
 	int		x;
+	int		y;
 	t_node	*temp;
 
 	if (s == NULL || count(s) == 0)
 		return (0);
 	x = 0;
+	y = 0;
 	temp = s->top;
 	while (temp != NULL && temp->content != elem)
 	{
 		x++;
 		temp = temp->next;
 	}
-	if (temp == NULL)
-		return (-1);
-	else
+	while (temp != NULL)
+	{
+		y--;
+		temp = temp->next;
+	}
+	if (x < -y)
 		return (x);
+	else
+		return (y);
 }
 
 int	reverse_find_elem(t_stack *s, int elem)
