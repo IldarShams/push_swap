@@ -6,7 +6,7 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 15:44:00 by smaegan           #+#    #+#             */
-/*   Updated: 2022/01/26 16:26:18 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/01/27 17:02:54 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	b_sorted_n(t_stack *s, int n)
 		return (0);
 }
 
-int	quick_sort_a(t_stack *a, t_stack *b, int n)
+int	pure_quick_sort_a(t_stack *a, t_stack *b, int n)
 {
 	int	steps;
 	int	a_count;
@@ -134,12 +134,12 @@ int	quick_sort_a(t_stack *a, t_stack *b, int n)
 			rra(a);
 		}
 	}
-	steps += quick_sort_b(a, b, b_count);
-	steps += quick_sort_a(a, b, a_count);
+	steps += pure_quick_sort_b(a, b, b_count);
+	steps += pure_quick_sort_a(a, b, a_count);
 	return (steps);
 }
 
-int	quick_sort_b(t_stack *a, t_stack *b, int n)
+int	pure_quick_sort_b(t_stack *a, t_stack *b, int n)
 {
 	int	steps;
 	int	a_count;
@@ -180,18 +180,148 @@ int	quick_sort_b(t_stack *a, t_stack *b, int n)
 			rrb(b);
 		}
 	}
-	steps += quick_sort_b(a, b, b_count);
-	steps += quick_sort_a(a, b, a_count);
+	steps += pure_quick_sort_b(a, b, b_count);
+	steps += pure_quick_sort_a(a, b, a_count);
 	return (steps);
 }
 
-int	quick_sort(t_stack *a, t_stack *b)
+int	pure_quick_sort(t_stack *a, t_stack *b)
 {
 	int	steps;
 
 	if (sorted(a))
 		return (0);
-	steps = quick_sort_a(a, b, count(a));
+	steps = pure_quick_sort_a(a, b, count(a));
+	while (count(b) != 0)
+	{
+		steps++;
+		pa(a, b);
+	}
+	return (steps);
+}
+
+int	modified_quick_sort_a(t_stack *a, t_stack *b, int n)
+{
+	int	steps;
+	int	a_count;
+	int	b_count;
+	int	pivot;
+	int	i;
+
+	steps = 0;
+	i = 0;
+	if (a_sorted_n(a, n))
+	{
+		while (n != 0)
+		{
+			steps++;
+			pb(a, b);
+			n--;
+		}
+		return (steps);
+	}
+	b_count = 0;
+	a_count = n;
+	pivot = find_pivot_n(a, n);
+	if (n == 2)
+	{
+		steps++;
+		sa(a);
+	}
+	else
+	{
+		while (steps < n)
+		{
+			if (a->top->content < pivot)
+			{
+				a_count--;
+				b_count++;
+				pb(a, b);
+			}
+			else
+				ra(a);
+			steps++;
+		}
+		while (i < a_count)
+		{
+			i++;
+			steps++;
+			rra(a);
+		}
+	}
+	if (b_count <= 4)
+		steps += small_stack_sort_b(a, b, b_count);
+	else
+		steps += modified_quick_sort_b(a, b, b_count);
+	if (a_count <= 4)
+		steps += small_stack_sort_a(a, b, a_count);
+	else
+		steps += modified_quick_sort_a(a, b, a_count);
+	return (steps);
+}
+
+int	modified_quick_sort_b(t_stack *a, t_stack *b, int n)
+{
+	int	steps;
+	int	a_count;
+	int	b_count;
+	int	pivot;
+	int	i;
+
+	steps = 0;
+	i = 0;
+	if (b_sorted_n(b, n))
+		return (0);
+	b_count = n;
+	a_count = 0;
+	pivot = find_pivot_n(b, n);
+	if (n == 2)
+	{
+		steps++;
+		sb(b);
+	}
+	else
+	{
+		while (steps != n && n != 2)
+		{
+			if (b->top->content > pivot)
+			{
+				a_count++;
+				b_count--;
+				pa(a, b);
+			}
+			else
+				rb(b);
+			steps++;
+		}
+		while (i < b_count)
+		{
+			i++;
+			steps++;
+			rrb(b);
+		}
+	}
+	if (b_count <= 3)
+		steps += small_stack_sort_b(a, b, b_count);
+	else
+		steps += modified_quick_sort_b(a, b, b_count);
+	if (a_count <= 3)
+		steps += small_stack_sort_a(a, b, a_count);
+	else
+		steps += modified_quick_sort_a(a, b, a_count);
+	return (steps);
+}
+
+int	modified_quick_sort(t_stack *a, t_stack *b)
+{
+	int	steps;
+
+	if (sorted(a))
+		return (0);
+	if (count(a) <= 5)
+		steps = small_stack_sort_a(a, b, count(a));
+	else
+		steps = modified_quick_sort_a(a, b, count(a));
 	while (count(b) != 0)
 	{
 		steps++;

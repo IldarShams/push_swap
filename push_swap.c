@@ -6,7 +6,7 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 15:48:40 by smaegan           #+#    #+#             */
-/*   Updated: 2022/01/26 20:02:45 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/01/27 19:33:35 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,7 @@ int	main(int argc, char **argv)
 		x--;
 	}
 	put_index(a);
-	int a1 = small_stack_sort_a(a, b, count(a));
-	printf("sorted a:\n");
-	show(1, a);
-	printf("----------\n\n");
-	printf("	%d/%d\n", g, a1);
+	pure_quick_sort_a(a, b, count(a));
 	free_stack(a);
 	free_stack(b);
 	free(a);

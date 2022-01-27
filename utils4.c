@@ -6,17 +6,18 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:08:45 by smaegan           #+#    #+#             */
-/*   Updated: 2022/01/26 19:51:09 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/01/27 15:07:19 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rrr(t_stack *a, t_stack *b)
+int	rrr(t_stack *a, t_stack *b)
 {
 	rra(a);
 	rrb(b);
 	write(1, "rrr\n", 4);
+	return (1);
 }
 
 void	put_index(t_stack *s)

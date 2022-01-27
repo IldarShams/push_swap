@@ -6,77 +6,82 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 17:02:42 by smaegan           #+#    #+#             */
-/*   Updated: 2022/01/26 19:50:07 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/01/27 15:28:15 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_stack *a)
+int	sa(t_stack *a)
 {
 	t_node	*f;
 	t_node	*sec;
 
 	write(1, "sa\n", 3);
 	if (a->top == NULL)
-		return ;
+		return (0);
 	if (a->top->next == NULL)
-		return ;
+		return (0);
 	f = a->top;
 	sec = f->next;
 	f->next = sec->next;
 	sec->next = f;
 	a->top = sec;
+	return (1);
 }
 
-void	sb(t_stack *b)
+int	sb(t_stack *b)
 {
 	t_node	*f;
 	t_node	*sec;
 
 	write(1, "sb\n", 3);
 	if (b->top == NULL)
-		return ;
+		return (0);
 	if (b->top->next == NULL)
-		return ;
+		return (0);
 	f = b->top;
 	sec = f->next;
 	f->next = sec->next;
 	sec->next = f;
 	b->top = sec;
+	return (1);
 }
 
-void	ss(t_stack *a, t_stack *b)
+int	ss(t_stack *a, t_stack *b)
 {
 	write(1, "ss\n", 3);
 	sa(a);
 	sb(b);
+	return (1);
 }
 
-void	pa(t_stack *a, t_stack *b)
+int	pa(t_stack *a, t_stack *b)
 {
 	t_node	*temp;
 
 	write(1, "pa\n", 3);
 	if (b->top == NULL)
-		return ;
+		return (0);
 	temp = b->top;
 	b->top = b->top->next;
 	temp->next = a->top;
 	a->top = temp;
 	g++;
+	return (1);
 }
 
-void	pb(t_stack *a, t_stack *b)
+int	pb(t_stack *a, t_stack *b)
 {
 	t_node	*temp;
 
 	write(1, "pb\n", 3);
 	if (a->top == NULL)
-		return ;
+		return (0);
 	temp = a->top;
 	a->top = a->top->next;
 	temp->next = b->top;
 	b->top = temp;
 	g++;
+	return (1);
 }
