@@ -6,7 +6,7 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 15:48:40 by smaegan           #+#    #+#             */
-/*   Updated: 2022/01/27 19:33:35 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/01/29 16:52:33 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,11 @@ int	main(int argc, char **argv)
 		x--;
 	}
 	put_index(a);
-	pure_quick_sort_a(a, b, count(a));
+	// while (count(a) != 0)
+	// 	pb(a, b);
+	modified_quick_sort(a, b);
+	// show(1, a);
+	// printf("	%d", steps);
 	free_stack(a);
 	free_stack(b);
 	free(a);
