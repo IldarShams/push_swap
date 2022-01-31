@@ -204,6 +204,29 @@ int	cocktail_sort_a2(t_stack* a, t_stack* b, int a_n)
 	return (steps);
 }
 
+int	cocktail_sort_b12(t_stack *a, t_stack *b, int b_n)
+{
+	int	steps;
+	int	a_n;
+	int	i;
+
+	a_n = 0;
+	i = 0;
+	steps = 0;
+	while (b_n > 0)
+	{
+		while ( b_n > 0 && a_n < 4)
+		{
+			steps++;
+			a_n += pa(a, b);
+			b_n--;
+		}
+		steps += cocktail_sort_a2(a, b, a_n);
+		a_n = 0;
+	}
+	return (steps);
+}
+
 int	cocktail_sort_b2(t_stack *a, t_stack *b, int b_n)
 {
 	int	steps;

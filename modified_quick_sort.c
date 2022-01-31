@@ -27,31 +27,36 @@ int	modified_quick_sort_a(t_stack *a, t_stack *b, int n, int rra_flag)
 	b_count = 0;
 	a_count = n;
 	pivot = find_pivot_n(a, n);
-	while (steps < n)
+	while (steps < n && lil_check_a(a, pivot, a_count))
 	{
-		if (a->top->content < pivot)
+		if (a->top->content <= pivot)
 		{
 			a_count--;
 			b_count++;
 			pb(a, b);
 		}
 		else
+		{
+			i++;
 			ra(a);
+		}
 		steps++;
 	}
-	while (i < a_count && rra_flag != 0 && rra_flag != 1)
+	while (i-- > 0 && rra_flag != 0 && rra_flag != 1)
 	{
-		i++;
 		steps++;
 		rra(a);
 	}
 	if (a_count <= 4)
-		steps += cocktail_sort_a2(a, b, a_count);
+		steps += sort4elemwithparam(a, b, a_count);
 	else if (rra_flag == 0)
 		steps += modified_quick_sort_a(a, b, a_count, 1);
 	else if (rra_flag > 0)
 		steps += modified_quick_sort_a(a, b, a_count, rra_flag);
-	steps += modified_quick_sort_b(a, b, b_count, rra_flag);
+	if (b_count <= 3)
+		steps += cocktail_sort_b2(a, b, b_count);
+	else
+		steps += modified_quick_sort_b(a, b, b_count, rra_flag);
 	return (steps);
 }
 
@@ -85,30 +90,32 @@ int	modified_quick_sort_b(t_stack *a, t_stack *b, int n, int rra_flag)
 	}
 	else
 	{
-		while (steps != n && n != 2)
+		while (steps != n && n != 2 && lil_check_b(b, pivot, b_count))
 		{
-			if (b->top->content > pivot)
+			if (b->top->content >= pivot)
 			{
 				a_count++;
 				b_count--;
 				pa(a, b);
 			}
 			else
-				rb(b);
+				i += rb(b);
 			steps++;
 		}
-		while (i < b_count && rra_flag)
+		while (i-- > 0 && rra_flag)
 		{
-			i++;
 			steps++;
 			rrb(b);
 		}
 	}
 	if (a_count <= 4)
-		steps += cocktail_sort_a2(a, b, a_count);
+		steps += sort4elemwithparam(a, b, a_count);
 	else
 		steps += modified_quick_sort_a(a, b, a_count, 2);
-	steps += modified_quick_sort_b(a, b, b_count, rra_flag);
+	if (b_count <= 3)
+		steps += cocktail_sort_b2(a, b, b_count);
+	else
+		steps += modified_quick_sort_b(a, b, b_count, rra_flag);
 	return (steps);
 }
 
@@ -119,7 +126,7 @@ int	modified_quick_sort(t_stack *a, t_stack *b)
 	if (sorted(a))
 		return (0);
 	if (count(a) <= 4)
-		steps = cocktail_sort_a2(a, b, count(a));
+		steps = sort4elemwithparam(a, b, count(a));
 	else
 		steps = modified_quick_sort_a(a, b, count(a), 0);
 	return (steps);

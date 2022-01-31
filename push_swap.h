@@ -6,7 +6,7 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 17:03:20 by smaegan           #+#    #+#             */
-/*   Updated: 2022/01/29 16:47:04 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/01/31 20:08:02 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_stack	t_stack;
 int		g;
 int		sa(t_stack *a);
 int		sb(t_stack *a);
+int		sa2(t_stack *a);
+int		sb2(t_stack *a);
 int		ss(t_stack *a, t_stack *b);
 int		pa(t_stack *a, t_stack *b);
 int		pb(t_stack *a, t_stack *b);
@@ -65,9 +67,13 @@ int		small_stack_sort_b(t_stack *a, t_stack *b, int n);
 int		find_pivot_n(t_stack *s, int n);
 void	put_index(t_stack *s);
 int		direct_find_index_n(t_stack *s, int index, int n);
+int		lil_check_a(t_stack *a, int pivot, int n);
+int		lil_check_b(t_stack *b, int pivot, int n);
+
 
 int		cocktail_sort_a2(t_stack *a, t_stack *b, int a_n);
 int		cocktail_sort_b2(t_stack *a, t_stack *b, int b_n);
 int		sort3elemwithparam(t_stack *a, int n);
+int		sort4elemwithparam(t_stack *a, t_stack *b, int n);
 
 #endif

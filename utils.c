@@ -6,7 +6,7 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 17:02:42 by smaegan           #+#    #+#             */
-/*   Updated: 2022/01/27 15:28:15 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/01/31 19:01:04 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int	sb(t_stack *b)
 int	ss(t_stack *a, t_stack *b)
 {
 	write(1, "ss\n", 3);
-	sa(a);
-	sb(b);
+	sa2(a);
+	sb2(b);
 	return (1);
 }
 
