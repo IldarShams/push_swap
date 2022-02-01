@@ -1,57 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils5.c                                           :+:      :+:    :+:   */
+/*   utils7.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/21 14:54:53 by smaegan           #+#    #+#             */
-/*   Updated: 2022/02/01 17:27:28 by smaegan          ###   ########.fr       */
+/*   Created: 2022/02/01 20:37:18 by smaegan           #+#    #+#             */
+/*   Updated: 2022/02/01 20:38:01 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	sorted(t_stack *s)
+int	lil_check_b(t_stack *b, int pivot, int n)
 {
 	t_node	*temp;
 
-	if (count(s) == 0 || count(s) == 1)
-		return (1);
-	temp = s->top;
-	while (temp->next != NULL && temp->content < temp->next->content)
-		temp = temp->next;
-	if (temp->next == NULL)
-		return (1);
-	else
+	if (count(b) < n)
+		n = count(b);
+	if (n == 0 || n == 1)
 		return (0);
-}
-
-int	count(t_stack *s)
-{
-	int		x;
-	t_node	*temp;
-
-	if (s->top == NULL)
-		return (0);
-	x = 0;
-	temp = s->top;
-	while (temp != NULL)
+	temp = b->top;
+	while (n-- > 0)
 	{
-		x++;
+		if (temp->content >= pivot)
+			return (1);
 		temp = temp->next;
 	}
-	return (x);
+	return (0);
 }
 
-void	pa_n(t_stack *a, t_stack *b, int n)
-{
-	while (n-- > 0)
-		pa(a, b);
-}
 
-void	pb_n(t_stack *a, t_stack *b, int n)
+int	lil_check_a(t_stack *a, int pivot, int n)
 {
+	t_node	*temp;
+
+	if (count(a) < n)
+		n = count(a);
+	if (n == 0 || n == 1)
+		return (0);
+	temp = a->top;
 	while (n-- > 0)
-		pb(a, b);
+	{
+		if (temp->content <= pivot)
+			return (1);
+		temp = temp->next;
+	}
+	return (0);
 }

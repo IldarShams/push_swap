@@ -6,7 +6,7 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 15:44:00 by smaegan           #+#    #+#             */
-/*   Updated: 2022/01/31 15:37:31 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/02/01 17:38:49 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int	find_pivot_n(t_stack *s, int n)
 
 	if (n < 2)
 		return (s->top->content);
-	if (count(s) < n)
-		n = count(s);
 	i = 0;
 	temp = s->top;
 	max_index = -1;
@@ -85,120 +83,7 @@ int	b_sorted_n(t_stack *s, int n)
 		return (0);
 }
 
-int	pure_quick_sort_a(t_stack *a, t_stack *b, int n, int rra_flag)
-{
-	int	steps;
-	int	a_count;
-	int	b_count;
-	int	pivot;
-	int	i;
-
-	steps = 0;
-	i = 0;
-	if (a_sorted_n(a, n))
-		return (0);
-	b_count = 0;
-	a_count = n;
-	pivot = find_pivot_n(a, n);
-	if (n == 2)
-	{
-		steps++;
-		sa(a);
-	}
-	else
-	{
-		while (steps < n)
-		{
-			if (a->top->content < pivot)
-			{
-				a_count--;
-				b_count++;
-				pb(a, b);
-			}
-			else
-				ra(a);
-			steps++;
-		}
-		while (i < a_count && rra_flag != 0 && rra_flag != 1)
-		{
-			i++;
-			steps++;
-			rra(a);
-		}
-	}
-	if (rra_flag == 0)
-		steps += pure_quick_sort_a(a, b, a_count, 1);
-	else if (rra_flag > 0)
-		steps += pure_quick_sort_a(a, b, a_count, rra_flag);
-	steps += pure_quick_sort_b(a, b, b_count, rra_flag);
-	return (steps);
-}
-
-int	pure_quick_sort_b(t_stack *a, t_stack *b, int n, int rra_flag)
-{
-	int	steps;
-	int	a_count;
-	int	b_count;
-	int	pivot;
-	int	i;
-
-	steps = 0;
-	i = 0;
-	if (b_sorted_n(b, n))
-	{
-		while (n != 0)
-		{
-			steps++;
-			pa(a, b);
-			n--;
-		}
-		return (steps);
-	}
-	b_count = n;
-	a_count = 0;
-	pivot = find_pivot_n(b, n);
-	if (n == 2)
-	{
-		steps++;
-		sb(b);
-	}
-	else
-	{
-		while (steps != n && n != 2)
-		{
-			if (b->top->content > pivot)
-			{
-				a_count++;
-				b_count--;
-				pa(a, b);
-			}
-			else
-				rb(b);
-			steps++;
-		}
-		while (i < b_count && rra_flag)
-		{
-			i++;
-			steps++;
-			rrb(b);
-		}
-	}
-	steps += pure_quick_sort_a(a, b, a_count, 2);
-	steps += pure_quick_sort_b(a, b, b_count, rra_flag);
-	return (steps);
-}
-
-int	pure_quick_sort(t_stack *a, t_stack *b)
-{
-	int	steps;
-
-	if (sorted(a))
-		return (0);
-	steps = pure_quick_sort_a(a, b, count(a), 0);
-	return (steps);
-}
-
-// int	modified_quick_sort_a(t_stack *a, t_stack *b, int n)
+// int	pure_quick_sort_a(t_stack *a, t_stack *b, int n, int rra_flag)
 // {
 // 	int	steps;
 // 	int	a_count;
@@ -209,15 +94,7 @@ int	pure_quick_sort(t_stack *a, t_stack *b)
 // 	steps = 0;
 // 	i = 0;
 // 	if (a_sorted_n(a, n))
-// 	{
-// 		while (n != 0)
-// 		{
-// 			steps++;
-// 			pb(a, b);
-// 			n--;
-// 		}
-// 		return (steps);
-// 	}
+// 		return (0);
 // 	b_count = 0;
 // 	a_count = n;
 // 	pivot = find_pivot_n(a, n);
@@ -240,25 +117,22 @@ int	pure_quick_sort(t_stack *a, t_stack *b)
 // 				ra(a);
 // 			steps++;
 // 		}
-// 		while (i < a_count)
+// 		while (i < a_count && rra_flag != 0 && rra_flag != 1)
 // 		{
 // 			i++;
 // 			steps++;
 // 			rra(a);
 // 		}
 // 	}
-// 	if (b_count <= 4)
-// 		steps += small_stack_sort_b(a, b, b_count);
-// 	else
-// 		steps += modified_quick_sort_b(a, b, b_count);
-// 	if (a_count <= 4)
-// 		steps += small_stack_sort_a(a, b, a_count);
-// 	else
-// 		steps += modified_quick_sort_a(a, b, a_count);
+// 	if (rra_flag == 0)
+// 		steps += pure_quick_sort_a(a, b, a_count, 1);
+// 	else if (rra_flag > 0)
+// 		steps += pure_quick_sort_a(a, b, a_count, rra_flag);
+// 	steps += pure_quick_sort_b(a, b, b_count, rra_flag);
 // 	return (steps);
 // }
 
-// int	modified_quick_sort_b(t_stack *a, t_stack *b, int n)
+// int	pure_quick_sort_b(t_stack *a, t_stack *b, int n, int rra_flag)
 // {
 // 	int	steps;
 // 	int	a_count;
@@ -269,7 +143,15 @@ int	pure_quick_sort(t_stack *a, t_stack *b)
 // 	steps = 0;
 // 	i = 0;
 // 	if (b_sorted_n(b, n))
-// 		return (0);
+// 	{
+// 		while (n != 0)
+// 		{
+// 			steps++;
+// 			pa(a, b);
+// 			n--;
+// 		}
+// 		return (steps);
+// 	}
 // 	b_count = n;
 // 	a_count = 0;
 // 	pivot = find_pivot_n(b, n);
@@ -292,38 +174,24 @@ int	pure_quick_sort(t_stack *a, t_stack *b)
 // 				rb(b);
 // 			steps++;
 // 		}
-// 		while (i < b_count)
+// 		while (i < b_count && rra_flag)
 // 		{
 // 			i++;
 // 			steps++;
 // 			rrb(b);
 // 		}
 // 	}
-// 	if (b_count <= 3)
-// 		steps += small_stack_sort_b(a, b, b_count);
-// 	else
-// 		steps += modified_quick_sort_b(a, b, b_count);
-// 	if (a_count <= 3)
-// 		steps += small_stack_sort_a(a, b, a_count);
-// 	else
-// 		steps += modified_quick_sort_a(a, b, a_count);
+// 	steps += pure_quick_sort_a(a, b, a_count, 2);
+// 	steps += pure_quick_sort_b(a, b, b_count, rra_flag);
 // 	return (steps);
 // }
 
-// int	modified_quick_sort(t_stack *a, t_stack *b)
+// int	pure_quick_sort(t_stack *a, t_stack *b)
 // {
 // 	int	steps;
 
 // 	if (sorted(a))
 // 		return (0);
-// 	if (count(a) <= 5)
-// 		steps = small_stack_sort_a(a, b, count(a));
-// 	else
-// 		steps = modified_quick_sort_a(a, b, count(a));
-// 	while (count(b) != 0)
-// 	{
-// 		steps++;
-// 		pa(a, b);
-// 	}
+// 	steps = pure_quick_sort_a(a, b, count(a), 0);
 // 	return (steps);
 // }

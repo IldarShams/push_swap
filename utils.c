@@ -6,7 +6,7 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 17:02:42 by smaegan           #+#    #+#             */
-/*   Updated: 2022/01/31 19:01:04 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/02/01 16:33:43 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int	pa(t_stack *a, t_stack *b)
 	b->top = b->top->next;
 	temp->next = a->top;
 	a->top = temp;
-	g++;
 	return (1);
 }
 
@@ -82,6 +81,5 @@ int	pb(t_stack *a, t_stack *b)
 	a->top = a->top->next;
 	temp->next = b->top;
 	b->top = temp;
-	g++;
 	return (1);
 }

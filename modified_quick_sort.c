@@ -12,122 +12,78 @@
 
 #include "push_swap.h"
 
-int	modified_quick_sort_a(t_stack *a, t_stack *b, int n, int rra_flag)
+void	modified_quick_sort_a(t_stack *a, t_stack *b, int n, int rra_flag)
 {
-	int	steps;
-	int	a_count;
-	int	b_count;
-	int	pivot;
-	int	i;
+	t_Jo	jo;
 
-	steps = 0;
-	i = 0;
-	if (a_sorted_n(a, n))
-		return (0);
-	b_count = 0;
-	a_count = n;
-	pivot = find_pivot_n(a, n);
-	while (steps < n && lil_check_a(a, pivot, a_count))
+	jo.i = 0;
+	jo.b_count = 0;
+	jo.a_count = n;
+	jo.pivot = find_pivot_n(a, n);
+	while (n-- > 0 && lil_check_a(a, jo.pivot, jo.a_count))
 	{
-		if (a->top->content <= pivot)
+		if (a->top->content <= jo.pivot)
 		{
-			a_count--;
-			b_count++;
-			pb(a, b);
+			jo.a_count--;
+			jo.b_count += pb(a, b);
 		}
 		else
-		{
-			i++;
-			ra(a);
-		}
-		steps++;
+			jo.i += ra(a);
 	}
-	while (i-- > 0 && rra_flag != 0 && rra_flag != 1)
-	{
-		steps++;
+	while (jo.i-- > 0 && rra_flag != 0 && rra_flag != 1)
 		rra(a);
-	}
-	if (a_count <= 4)
-		steps += sort4elemwithparam(a, b, a_count);
-	else if (rra_flag == 0)
-		steps += modified_quick_sort_a(a, b, a_count, 1);
-	else if (rra_flag > 0)
-		steps += modified_quick_sort_a(a, b, a_count, rra_flag);
-	if (b_count <= 3)
-		steps += cocktail_sort_b2(a, b, b_count);
-	else
-		steps += modified_quick_sort_b(a, b, b_count, rra_flag);
-	return (steps);
+	if (jo.a_count <= 5 && !a_sorted_n(a, jo.a_count))
+		cocktail_sort_a2(a, b, jo.a_count);
+	else if (rra_flag == 0 && !a_sorted_n(a, jo.a_count))
+		modified_quick_sort_a(a, b, jo.a_count, 1);
+	else if (rra_flag > 0 && !a_sorted_n(a, jo.a_count))
+		modified_quick_sort_a(a, b, jo.a_count, rra_flag);
+	modified_quick_sort_b(a, b, jo.b_count, rra_flag);
 }
 
-int	modified_quick_sort_b(t_stack *a, t_stack *b, int n, int rra_flag)
+void	b_check(t_stack *a, t_stack *b, int n)
 {
-	int	steps;
-	int	a_count;
-	int	b_count;
-	int	pivot;
-	int	i;
-
-	steps = 0;
-	i = 0;
-	if (b_sorted_n(b, n))
-	{
-		while (n != 0)
-		{
-			steps++;
-			pa(a, b);
-			n--;
-		}
-		return (steps);
-	}
-	b_count = n;
-	a_count = 0;
-	pivot = find_pivot_n(b, n);
-	if (n == 2)
-	{
-		steps++;
+	if (n == 2 && !b_sorted_n(b, n))
 		sb(b);
-	}
-	else
-	{
-		while (steps != n && n != 2 && lil_check_b(b, pivot, b_count))
-		{
-			if (b->top->content >= pivot)
-			{
-				a_count++;
-				b_count--;
-				pa(a, b);
-			}
-			else
-				i += rb(b);
-			steps++;
-		}
-		while (i-- > 0 && rra_flag)
-		{
-			steps++;
-			rrb(b);
-		}
-	}
-	if (a_count <= 4)
-		steps += sort4elemwithparam(a, b, a_count);
-	else
-		steps += modified_quick_sort_a(a, b, a_count, 2);
-	if (b_count <= 3)
-		steps += cocktail_sort_b2(a, b, b_count);
-	else
-		steps += modified_quick_sort_b(a, b, b_count, rra_flag);
-	return (steps);
+	while (n-- > 0)
+		pa(a, b);
 }
 
-int	modified_quick_sort(t_stack *a, t_stack *b)
+void	modified_quick_sort_b(t_stack *a, t_stack *b, int n, int rra_flag)
 {
-	int	steps;
+	t_Jo	jo;
 
-	if (sorted(a))
-		return (0);
-	if (count(a) <= 4)
-		steps = sort4elemwithparam(a, b, count(a));
+	jo.i = 0;
+	if (b_sorted_n(b, n) || n == 2)
+		return (b_check(a, b, n));
+	jo.b_count = n;
+	jo.a_count = 0;
+	jo.pivot = find_pivot_n(b, n);
+	while (n-- > 0 && lil_check_b(b, jo.pivot, jo.b_count))
+	{
+		if (b->top->content >= jo.pivot)
+		{
+			jo.a_count += pa(a, b);
+			jo.b_count--;
+		}
+		else
+			jo.i += rb(b);
+	}
+	while (jo.i-- > 0 && rra_flag)
+		rrb(b);
+	if (jo.a_count <= 5)
+		cocktail_sort_a2(a, b, jo.a_count);
 	else
-		steps = modified_quick_sort_a(a, b, count(a), 0);
-	return (steps);
+		modified_quick_sort_a(a, b, jo.a_count, 2);
+	modified_quick_sort_b(a, b, jo.b_count, rra_flag);
+}
+
+void	modified_quick_sort(t_stack *a, t_stack *b)
+{
+	if (sorted(a))
+		return ;
+	if (count(a) <= 5)
+		cocktail_sort_a2(a, b, count(a));
+	else
+		modified_quick_sort_a(a, b, count(a), 0);
 }
