@@ -238,8 +238,6 @@ int	cocktail_sort_b2(t_stack *a, t_stack *b, int b_n)
 	steps = 0;
 	if (count(b) < b_n)
 		b_n = count(b);
-	if (b_n == 0 || b_n == 1)
-		return (0);
 	while (!b_sorted_n(b, b_n - a_n))
 	{
 		while (!b_sorted_n(b, b_n - a_n))
