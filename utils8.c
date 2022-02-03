@@ -6,7 +6,7 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 20:38:51 by smaegan           #+#    #+#             */
-/*   Updated: 2022/02/01 20:46:16 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/02/03 17:51:05 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@ void	swap(t_stack *s)
 	t_node	*f;
 	t_node	*sec;
 
-
 	if (s->top == NULL)
-		return (0);
+		return ;
 	if (s->top->next == NULL)
-		return (0);
+		return ;
 	f = s->top;
 	sec = f->next;
 	f->next = sec->next;
@@ -40,7 +39,7 @@ void	push_a(t_stack *a, t_stack *b)
 	t_node	*temp;
 
 	if (b->top == NULL)
-		return (0);
+		return ;
 	temp = b->top;
 	b->top = b->top->next;
 	temp->next = a->top;
@@ -52,9 +51,9 @@ void	rotate(t_stack *a)
 	t_node	*temp;
 
 	if (a->top == NULL)
-		return (0);
+		return ;
 	if (a->top->next == NULL)
-		return (0);
+		return ;
 	temp = a->top;
 	while (temp->next != NULL)
 		temp = temp->next;
@@ -67,31 +66,4 @@ void	rotate_rotate(t_stack *a, t_stack *b)
 {
 	rotate(a);
 	rotate(b);
-}
-
-void	rrotate(t_stack *a)
-{
-	t_node	*prev;
-	t_node	*temp;
-
-	if (a->top == NULL)
-		return (0);
-	if (a->top->next == NULL)
-		return (0);
-	prev = NULL;
-	temp = a->top;
-	while (temp->next != NULL)
-	{
-		prev = temp;
-		temp = temp->next;
-	}
-	temp->next = a->top;
-	prev->next = NULL;
-	a->top = temp;
-}
-
-void	rrotate_rotate(t_stack *a, t_stack *b)
-{
-	rrotate(a);
-	rrotate(b);
 }

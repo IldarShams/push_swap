@@ -1,8 +1,9 @@
 NAME = push_swap
-SRCS = push_swap.c utils.c utils2.c utils3.c utils4.c utils5.c utils6.c \
-		selection_sort.c quick_sort.c small_stack_sort.c \
-		modified_quick_sort.c quick4elem.c sort3elem_b.c
-SRCS_B = b_checker.c utils.c utils2.c utils3.c utils4.c utils5.c utils6.c \
+SRCS = push_swap.c selection_sort.c quick_sort.c small_stack_sort.c \
+		modified_quick_sort.c quick4elem.c sort3elem_b.c small_stack_sort2.c \
+		utils.c utils2.c utils3.c utils4.c utils5.c utils6.c utils7.c 
+SRCS_B = b_checker.c \
+		utils.c utils2.c utils3.c utils4.c utils5.c utils6.c utils7.c utils8.c
 		
 LIB_PATH = ./Libft
 HEADER = push_swap.h
@@ -20,7 +21,7 @@ $(NAME) : $(OBJ) ${HEADER}
 clean   :
 	$(RM) $(OBJ) $(OBJ_B) get_next_line*.o
 fclean  :   clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) checker
 gnl:
 	gcc -c ./get_next_line/*bonus.c
 bonus	: gnl $(OBJ_B) ${HEADER} 

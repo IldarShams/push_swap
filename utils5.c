@@ -6,7 +6,7 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:54:53 by smaegan           #+#    #+#             */
-/*   Updated: 2022/02/01 17:27:28 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/02/03 18:06:11 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,23 @@ void	pb_n(t_stack *a, t_stack *b, int n)
 {
 	while (n-- > 0)
 		pb(a, b);
+}
+
+int	ft_isnum(char *argv)
+{
+	int	i;
+
+	i = 0;
+	if (argv[i] == '-')
+	{
+		i++;
+		if (argv[i] == '\0')
+			return (0);
+	}
+	while (ft_isdigit(argv[i]))
+		i++;
+	if (argv[i] == '\0')
+		return (1);
+	else
+		return (0);
 }

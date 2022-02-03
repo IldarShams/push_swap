@@ -83,7 +83,7 @@ void	modified_quick_sort(t_stack *a, t_stack *b)
 	if (sorted(a))
 		return ;
 	if (count(a) <= 5)
-		cocktail_sort_a2(a, b, count(a));
+		small_stack_sort(a, b, count(a));
 	else
 		modified_quick_sort_a(a, b, count(a), 0);
 }

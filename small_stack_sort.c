@@ -63,6 +63,69 @@ void	cocktail_sort_a2(t_stack *a, t_stack *b, int a_n)
 	pa_n(a, b, --i);
 }
 
+void	sort3elem(t_stack *a)
+{
+	int		sec;
+	int		t;
+
+	sec = a->top->next->content;
+	t = a->top->next->next->content;
+	if (sec < a->top->content && a->top->content < t)
+		sa(a);
+	else if (a->top->content < sec && sec > t && t > a->top->content)
+	{
+		sa(a);
+		ra(a);
+	}
+	else if (a->top->content < sec && a->top->content > t)
+		rra(a);
+	else if (a->top->content > sec && sec > t)
+	{
+		ra(a);
+		sa(a);
+	}
+	else if (a->top->content < sec && sec > t && t < a->top->content)
+		sa(a);
+	else if (a->top->content > sec && a->top->content > sec && sec < t)
+		ra(a);
+}
+
+int	searchmin(t_stack *a)
+{
+	int		m;
+	t_node	*tmp;
+
+	m = a->top->content;
+	tmp = a->top->next;
+	while (tmp != NULL)
+	{
+		if (m > tmp->content)
+			m = tmp->content;
+		tmp = tmp->next;
+	}
+	return (m);
+}
+
+void	sort4elem(t_stack *a, t_stack *b)
+{
+	int	i;
+
+	i = direct_find_elem(a, searchmin(a));
+	while (i > 0)
+	{
+		ra(a);
+		i--;
+	}
+	while (i < 0)
+	{
+		rra(a);
+		i++;
+	}
+	pb(a, b);
+	sort3elem(a);
+	pa(a, b);
+}
+
 // void	cocktail_sort_b2(t_stack *a, t_stack *b, int b_n)
 // {
 // 	int	a_n;
@@ -92,63 +155,4 @@ void	cocktail_sort_a2(t_stack *a, t_stack *b, int a_n)
 // 	}
 // 	while (a_n < b_n)
 // 		a_n += pa(a, b);
-// }
-
-// int	sort3elemwithparam(t_stack *a, int n)
-// {
-// 	int		sec;
-// 	int		t;
-// 	int		steps;
-
-// 	steps = 0;
-// 	if (n == 1 || n == 0)
-// 		return (0);
-// 	if (n == 2 && !a_sorted_n(a, 2))
-// 	{
-// 		sa(a);
-// 		return (1);
-// 	}
-// 	else if (n == 2)
-// 		return (0);
-// 	sec = (a)->top->next->content;
-// 	t = (a)->top->next->next->content;
-// 	if (sec < (a)->top->content && (a)->top->content < t)
-// 	{
-// 		sa(a);
-// 		return (1);
-// 	}
-// 	else if ((a)->top->content < sec && sec > t && t > (a)->top->content)
-// 	{
-// 		ra(a);
-// 		sa(a);
-// 		rra(a);
-// 		return (4);
-// 	}
-// 	else if ((a)->top->content < sec && (a)->top->content > t)
-// 	{
-// 		ra(a);
-// 		sa(a);
-// 		rra(a);
-// 		sa(a);
-// 		return (3);
-// 	}
-// 	else if ((a)->top->content > sec && sec > t)
-// 	{
-// 		sa(a);
-// 		ra(a);
-// 		sa(a);
-// 		rra(a);
-// 		sa(a);
-// 		return (5);
-// 	}
-// 	else if ((a)->top->content > sec && (a)->top->content > sec && sec < t)
-// 	{
-// 		sa(a);
-// 		ra(a);
-// 		sa(a);
-// 		rra(a);
-// 		return (4);
-// 	}
-// 	else
-// 		return (0);
 // }

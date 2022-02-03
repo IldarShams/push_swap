@@ -6,26 +6,11 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 18:32:13 by smaegan           #+#    #+#             */
-/*   Updated: 2022/02/01 19:04:27 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/02/03 20:02:49 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	ft_isnum(char *argv)
-{
-	int	i;
-
-	i = 0;
-	if (argv[i] == '-')
-		i++;
-	while (ft_isdigit(argv[i]))
-		i++;
-	if (argv[i] == '\0')
-		return (1);
-	else
-		return (0);
-}
 
 int	arg_check(char *argv)
 {
@@ -38,6 +23,28 @@ int	arg_check(char *argv)
 		return (1);
 	if (ft_strlen(argv) == 11
 		&& ft_strncmp(argv, "-2147483648", 11) > 0)
+		return (1);
+	return (0);
+}
+
+int	dup_zero_check(int argc, char **argv)
+{
+	int	m_zero;
+	int	zero;
+	int	i;
+
+	i = 1;
+	m_zero = 0;
+	zero = 0;
+	while (i < argc)
+	{
+		if (ft_strncmp(argv[i], "0", 1) == 0 && ft_strlen(argv[i]) == 1)
+			zero = 1;
+		if (ft_strncmp(argv[i], "-0", 2) == 0 && ft_strlen(argv[i]) == 2)
+			m_zero = 1;
+		i++;
+	}
+	if (zero == 1 && m_zero == 1)
 		return (1);
 	return (0);
 }
@@ -65,6 +72,42 @@ int	args_check(int argc, char **argv)
 			j++;
 		}
 		i++;
+	}
+	return (dup_zero_check(argc, argv));
+}
+
+int	lil_check_b(t_stack *b, int pivot, int n)
+{
+	t_node	*temp;
+
+	if (count(b) < n)
+		n = count(b);
+	if (n == 0 || n == 1)
+		return (0);
+	temp = b->top;
+	while (n-- > 0)
+	{
+		if (temp->content >= pivot)
+			return (1);
+		temp = temp->next;
+	}
+	return (0);
+}
+
+int	lil_check_a(t_stack *a, int pivot, int n)
+{
+	t_node	*temp;
+
+	if (count(a) < n)
+		n = count(a);
+	if (n == 0 || n == 1)
+		return (0);
+	temp = a->top;
+	while (n-- > 0)
+	{
+		if (temp->content <= pivot)
+			return (1);
+		temp = temp->next;
 	}
 	return (0);
 }

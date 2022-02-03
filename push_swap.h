@@ -6,7 +6,7 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 17:03:20 by smaegan           #+#    #+#             */
-/*   Updated: 2022/02/01 19:32:21 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/02/03 19:43:32 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,14 @@ int		rr(t_stack *a, t_stack *b);
 int		rra(t_stack *a);
 int		rrb(t_stack *b);
 int		rrr(t_stack *a, t_stack *b);
+void	swap(t_stack *s);
+void	swap_swap(t_stack *s1, t_stack *s2);
+void	push_a(t_stack *a, t_stack *b);
+void	rotate(t_stack *a);
+void	rotate_rotate(t_stack *a, t_stack *b);
+void	rrotate(t_stack *a);
+void	rrotate_rotate(t_stack *a, t_stack *b);
+
 t_stack	*init_stack(void);
 void	free_stack(t_stack *s);
 void	push(t_stack *s, int elem);
@@ -64,6 +72,12 @@ int		count(t_stack *s);
 int		sorted(t_stack *s);
 int		a_sorted_n(t_stack *s, int n);
 int		b_sorted_n(t_stack *s, int n);
+
+void	sort3elem(t_stack *a);
+int		searchmin(t_stack *a);
+int		direct_find_elem(t_stack *s, int elem);
+void	sort4elem(t_stack *a, t_stack *b);
+void	sort5elem(t_stack *a, t_stack *b);
 int		pure_quick_sort(t_stack *a, t_stack *b);
 int		pure_quick_sort_b(t_stack *a, t_stack *b, int n, int rra_flag);
 int		pure_quick_sort_a(t_stack *a, t_stack *b, int n, int rra_flag);
@@ -76,13 +90,16 @@ int		direct_find_index_n(t_stack *s, int index, int n);
 int		lil_check_a(t_stack *a, int pivot, int n);
 int		lil_check_b(t_stack *b, int pivot, int n);
 
+void	small_stack_sort(t_stack *a, t_stack *b, int n);
 int		sort3elemwithparam_b(t_stack *a, t_stack *b, int n);
 void	cocktail_sort_a2(t_stack *a, t_stack *b, int a_n);
 int		cocktail_sort_b2(t_stack *a, t_stack *b, int b_n);
 int		sort3elemwithparam(t_stack *a, int n);
 int		sort4elemwithparam(t_stack *a, t_stack *b, int n);
 
+int		dup_zero_check(int argc, char **argv);
 int		arg_check(char *argv);
 int		args_check(int argc, char **argv);
+int		ft_isnum(char *argv);
 
 #endif
