@@ -6,7 +6,7 @@
 /*   By: smaegan <smaegan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 17:57:12 by smaegan           #+#    #+#             */
-/*   Updated: 2022/01/26 16:16:20 by smaegan          ###   ########.fr       */
+/*   Updated: 2022/02/04 12:18:57 by smaegan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_stack	*init_stack(void)
 	t_stack	*s;
 
 	s = (t_stack *)malloc(sizeof(t_stack));
+	if (s == NULL)
+		return (s);
 	s->top = NULL;
 	return (s);
 }
