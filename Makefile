@@ -14,14 +14,16 @@ CFLAGS  =   -Wall -Wextra -Werror -I $(HEADER)
 .PHONY  :   all clean fclean re
 all	:   $(NAME)
 $(NAME) : $(OBJ) ${HEADER}
-	cd ./Libft && make
+	cd ./Libft && make -f Makefile2
 	gcc $(CFLAGS) $(OBJ) -o $@ -L ./Libft -lft
 %.o : %.c ${HEADER}
 	gcc $(CFLAGS) -c $< -o $@
 clean   :
 	$(RM) $(OBJ) $(OBJ_B) get_next_line*.o
+	cd ./Libft && make -f Makefile2 clean
 fclean  :   clean
 	$(RM) $(NAME) checker
+	cd ./Libft && make -f Makefile2 fclean
 gnl:
 	gcc -c ./get_next_line/*bonus.c
 bonus	: gnl $(OBJ_B) ${HEADER} 
